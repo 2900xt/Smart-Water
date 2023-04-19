@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">App</string>
+    <string name="title_home">Home</string>
+    <string name="title_goal">Water Goal</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="string_log_water">Log Water</string>
+    <string name="string_reminders">Reminders</string>
+</resources>
