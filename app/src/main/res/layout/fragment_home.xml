@@ -7,17 +7,29 @@
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
+        android:id="@+id/water_progress_bar"
+        android:layout_width="277dp"
+        android:layout_height="334dp"
+        android:contentDescription="@string/water_progress_bar"
+        android:src="@drawable/water_prog_bar_drawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.161" />
+
+    <ImageView
         android:id="@+id/image_droplet_icon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="218dp"
+        android:layout_height="271dp"
         android:contentDescription="@string/string_log_water"
         android:src="@drawable/ic_droplet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <ImageView
         android:id="@+id/image_bell_icon"
@@ -32,17 +44,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.79" />
 
-    <ProgressBar
-        android:id="@+id/water_prog_bar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="337dp"
-        android:layout_height="323dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+
 
     <TextView
         android:id="@+id/text_water_drank"
@@ -69,10 +71,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.869" />
 
     <TextView
         android:id="@+id/text_log_water"
@@ -112,5 +114,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.004" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,14 @@
-package com.remindrop.smartwater.ui.calendar;
+package com.remindrop.smartwater.ui.consumption;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class ConsumptionViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public ConsumptionViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }

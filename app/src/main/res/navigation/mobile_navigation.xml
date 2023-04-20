@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_calendar"
-        android:name="com.remindrop.smartwater.ui.calendar.NotificationsFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_consumption"
+        android:name="com.remindrop.smartwater.ui.consumption.ConsumptionFragment"
+        android:label="@string/title_consumption"
+        tools:layout="@layout/fragment_consumption" />
 </navigation>

@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.remindrop.smartwater.R;
 import com.remindrop.smartwater.databinding.FragmentHomeBinding;
 
 
@@ -36,9 +38,14 @@ public class HomeFragment extends Fragment {
         final TextView textNextRem = binding.textNextRem;
         homeViewModel.getNextRemText().observe(getViewLifecycleOwner(), textNextRem::setText);
 
-        final ProgressBar waterProgressBar = binding.waterProgBar;
-        waterProgressBar.setAnimation(null);
-        homeViewModel.getProgress().observe(getViewLifecycleOwner(), waterProgressBar::setProgress);
+        final ImageView progressWheel = binding.waterProgressBar;
+        final WaterProgBar waterProgressWheel = (WaterProgBar) progressWheel.getDrawable();
+        waterProgressWheel.setProgress(10);
+        waterProgressWheel.setColor(
+                ContextCompat.getColor(this.requireContext(), R.color.normal_blue),
+                ContextCompat.getColor(this.requireContext(), R.color.lighter_blue)
+        );
+
         return root;
     }
 
