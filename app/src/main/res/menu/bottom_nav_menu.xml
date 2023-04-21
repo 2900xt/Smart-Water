@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_consumption"
-        android:icon="@drawable/ic_nav_progress"
+        android:icon="@drawable/ic_nav_consumption"
         android:title="@string/title_consumption" />
 
 </menu>

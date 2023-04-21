@@ -26,7 +26,7 @@ public class HomeViewModel extends ViewModel {
 
         totalCapacity = Math.round(totalCapacity * 10) / 10.0;
         ouncesDrank = Math.round(ouncesDrank * 10) / 10.0;
-        ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank");
+        ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank today!");
 
         currentDateText.setValue("Today: " + java.time.LocalDate.now().toString());
 

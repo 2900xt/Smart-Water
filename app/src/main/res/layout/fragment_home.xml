@@ -31,11 +31,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.204" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/image_bell_icon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="161dp"
+        android:layout_height="159dp"
+        android:background="@null"
         android:contentDescription="@string/string_reminders"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_reminder_bell"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,11 +47,25 @@
         app:layout_constraintVertical_bias="0.79" />
 
 
+    <ImageButton
+        android:id="@+id/image_log_water"
+        android:layout_width="161dp"
+        android:layout_height="158dp"
+        android:background="@null"
+        android:contentDescription="@string/string_log_water"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_log_extra_water"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787" />
 
     <TextView
         android:id="@+id/text_water_drank"
-        android:layout_width="206dp"
-        android:layout_height="29dp"
+        android:layout_width="291dp"
+        android:layout_height="26dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
