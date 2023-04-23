@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Util.JSONInit(getApplicationContext());
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -33,6 +35,27 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        Util.JSONSave();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        Util.JSONSave();
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        Util.JSONSave();
+        super.onPause();
     }
 
 }

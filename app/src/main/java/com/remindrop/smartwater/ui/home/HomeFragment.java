@@ -10,27 +10,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.remindrop.smartwater.R;
+import com.remindrop.smartwater.Util;
 import com.remindrop.smartwater.databinding.FragmentHomeBinding;
+import com.remindrop.smartwater.ui.home.logwater.LogWaterFragment;
+import com.remindrop.smartwater.ui.home.reminders.ReminderFragment;
+
+import org.json.JSONException;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private LayoutInflater inflater;
-    private ViewGroup container;
+    private HomeViewModel homeViewModel;
+    private void init() {
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        try {
+            homeViewModel.setData();
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        this.inflater = inflater;
-        this.container = container;
+        //We don't want to recreate the view-model every time we refresh
+        //
+        //This code runs once
 
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        homeViewModel.setData(0, 60, 100);
+        if(homeViewModel == null)
+        {
+            init();
+        }
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -47,13 +62,13 @@ public class HomeFragment extends Fragment {
 
         final ImageView progressWheel = binding.waterProgressBar;
         final WaterProgBar waterProgressWheel = (WaterProgBar) progressWheel.getDrawable();
-        waterProgressWheel.setProgress(10);
+        waterProgressWheel.setProgress(homeViewModel.getProgress().getValue());
         waterProgressWheel.setColor(
                 ContextCompat.getColor(this.requireContext(), R.color.normal_blue),
                 ContextCompat.getColor(this.requireContext(), R.color.lighter_blue)
         );
 
-        ClickListener input = new ClickListener();
+        ClickListener input = new ClickListener(this);
 
         binding.imageBellIcon.setOnClickListener(input);
         binding.imageLogWater.setOnClickListener(input);
@@ -61,32 +76,33 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void swapFragments(Fragment newFragment)
-    {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, newFragment);
-        fragmentTransaction.addToBackStack("Home");
-        fragmentTransaction.commit();
-    }
+
 
     private class ClickListener implements View.OnClickListener
     {
+        private Fragment parent;
+        public ClickListener(Fragment parent)
+        {
+            this.parent = parent;
+        }
         @Override
         public void onClick(View view) {
-            Fragment newFragment = null;
+            Fragment newFragment;
             switch(view.getId())
             {
                 case R.id.image_log_water:
-                    newFragment = new LogWaterFragment();
+                    newFragment = new LogWaterFragment(parent, homeViewModel);
                     break;
                 case R.id.image_bell_icon:
-                    newFragment = new ReminderFragment();
+                    newFragment = new ReminderFragment(parent, homeViewModel);
                     break;
+                default:
+                    newFragment = null;
             }
 
             if(newFragment != null)
             {
-                swapFragments(newFragment);
+                Util.swapFragments(parent, newFragment);
             }
         }
     }
@@ -96,4 +112,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

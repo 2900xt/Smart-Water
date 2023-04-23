@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
 
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.remindrop.smartwater.ui.home.LogWaterFragment"
+    tools:context="com.remindrop.smartwater.ui.home.logwater.LogWaterFragment"
     tools:ignore="HardcodedText"
     >
 
@@ -17,67 +17,133 @@
         android:rowCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805">
+        app:layout_constraintVertical_bias="0.643">
 
         <Button
             android:id="@+id/button_log_water_1"
-            android:text="1" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="1"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_2"
-            android:text="2" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="2"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_3"
-            android:text="3" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="3"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_4"
-            android:text="4" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="4"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_5"
-            android:text="5" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="5"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_6"
-            android:text="6" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="6"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_7"
-            android:text="7" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="7"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_8"
-            android:text="8" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="8"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_9"
-            android:text="9" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="9"
+            android:textColor="@color/white" />
+
+        <ImageView android:contentDescription="@null" />
 
         <Button
             android:id="@+id/button_log_water_0"
-            android:text="0" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="0"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_log_water_del"
-            android:text="del" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/light_blue"
+            android:text="del"
+            android:textColor="@color/white" />
     </GridLayout>
 
     <TextView
         android:id="@+id/text_amount_logged"
-        android:layout_width="258dp"
+        android:layout_width="250dp"
         android:layout_height="50dp"
-        android:text="TextView"
+        android:background="@drawable/textview_rounded"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/normal_blue"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+
+        app:layout_constraintVertical_bias="0.35" />
+
+    <ImageView
+        android:id="@+id/image_log_water"
+        android:layout_width="372dp"
+        android:layout_height="198dp"
+        android:src="@drawable/ic_log_extra_water"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <Button
+        android:id="@+id/button_add_water"
+        android:layout_width="271dp"
+        android:layout_height="67dp"
+        android:background="@drawable/textview_rounded"
+        android:text="Add Water"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.885" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

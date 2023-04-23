@@ -4,5 +4,5 @@
     android:layout_height="match_parent"
 
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.remindrop.smartwater.ui.home.ReminderFragment">
+    tools:context="com.remindrop.smartwater.ui.home.reminders.ReminderFragment">
 </androidx.constraintlayout.widget.ConstraintLayout>

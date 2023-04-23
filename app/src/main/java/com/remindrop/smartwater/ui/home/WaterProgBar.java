@@ -62,8 +62,8 @@ public class WaterProgBar extends Drawable {
         this.bgColor = bg;
     }
 
-    public void setProgress(int progress) {
-        this.progress = progress;
+    public void setProgress(double progress) {
+        this.progress = (int) (progress * 100);
         invalidateSelf();
     }
 }
