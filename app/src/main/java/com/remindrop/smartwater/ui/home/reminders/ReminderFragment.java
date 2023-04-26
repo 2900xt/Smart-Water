@@ -18,6 +18,11 @@ public class ReminderFragment extends Fragment {
     private Fragment parent;
     private HomeViewModel viewModel;
 
+    public ReminderFragment()
+    {
+
+    }
+
     public ReminderFragment(Fragment parent, HomeViewModel viewModel)
     {
         this.parent = parent;

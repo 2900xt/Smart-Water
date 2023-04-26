@@ -3,7 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_goal">Water Goal</string>
     <string name="title_consumption">Water Consumption</string>
-    <string name="string_log_water">Log Water</string>
-    <string name="string_reminders">Reminders</string>
+    <string name="string_log_water">Log Extra Water</string>
+    <string name="string_reminders">Reminder Settings</string>
     <string name="water_progress_bar">Water Progress Bar</string>
+    <string name="enable_reminders">Enable Reminders</string>
 </resources>

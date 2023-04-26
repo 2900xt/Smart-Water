@@ -39,8 +39,6 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         //We don't want to recreate the view-model every time we refresh
-        //
-        //This code runs once
 
         if(homeViewModel == null)
         {
