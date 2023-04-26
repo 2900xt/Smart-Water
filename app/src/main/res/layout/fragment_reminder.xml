@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch1"
+        android:id="@+id/switch_enable_reminders"
         android:layout_width="307dp"
         android:layout_height="55dp"
         android:layout_margin="2dp"
@@ -78,6 +78,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reminder_interval_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="0"
