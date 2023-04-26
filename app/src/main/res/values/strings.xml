@@ -7,4 +7,6 @@
     <string name="string_reminders">Reminder Settings</string>
     <string name="water_progress_bar">Water Progress Bar</string>
     <string name="enable_reminders">Enable Reminders</string>
+    <string name="error">Error</string>
+
 </resources>

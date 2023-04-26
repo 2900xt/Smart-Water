@@ -10,12 +10,9 @@ import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -122,5 +119,63 @@ public class Util {
     public static JSONObject getJSON()
     {
         return JSONData;
+    }
+
+    public static class Time
+    {
+        public int hour, minute, second;
+        public Time(int hour, int minute, int second)
+        {
+            this.hour = hour;
+            this.minute = minute;
+            this.second = second;
+        }
+        public Time()
+        {
+            this.hour = 0;
+            this.minute = 0;
+            this.second = 0;
+        }
+        public Time(String data)
+        {
+            String[] comp = data.split(":");
+            this.hour = Integer.parseInt(comp[0]);
+            this.minute = Integer.parseInt(comp[1]);
+            this.second = Integer.parseInt(comp[2]);
+        }
+        @Override
+        public String toString()
+        {
+            return hour + ":" + minute + ":" + second;
+        }
+    }
+
+    public static class Date
+    {
+        public int year, month, day;
+        public Date(int year, int month, int day)
+        {
+            this.year = year;
+            this.month = month;
+            this.day = day;
+        }
+        public Date()
+        {
+            this.year = 0;
+            this.month = 0;
+            this.day = 0;
+        }
+        public Date(String data)
+        {
+            String[] comp = data.split("/");
+            this.year = Integer.parseInt(comp[0]);
+            this.month = Integer.parseInt(comp[1]);
+            this.day = Integer.parseInt(comp[2]);
+        }
+        @Override
+        public String toString()
+        {
+            return year + ":" + month + ":" + day;
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class LogWaterFragment extends Fragment {
     private StringBuilder keypadBuffer;
     private Fragment parent;
     private HomeViewModel viewModel;
+    private Button addWaterButton;
 
     public LogWaterFragment()
     {
@@ -61,6 +63,7 @@ public class LogWaterFragment extends Fragment {
         binding.buttonLogWaterDel.setOnClickListener(clickListener);
 
         binding.buttonAddWater.setOnClickListener(clickListener);
+        addWaterButton = binding.buttonAddWater;
 
         return root;
     }
@@ -111,13 +114,24 @@ public class LogWaterFragment extends Fragment {
                     break;
                 case R.id.button_log_water_del:
                     if(keypadBuffer.length() != 0)
+                    {
                         keypadBuffer.deleteCharAt(keypadBuffer.length() - 1);
+                    }
                     break;
                 case R.id.button_add_water:
+                    keypadBuffer.insert(0, "0");
                     int amount = Integer.parseInt(keypadBuffer.toString());
                     viewModel.addWaterDrank(amount);
                     Util.swapFragments(current, parent);
                     break;
+            }
+
+            if(keypadBuffer.length() == 0)
+            {
+                addWaterButton.setText("Go Back");
+            } else
+            {
+                addWaterButton.setText("Add Water");
             }
 
             amountWater.setValue(keypadBuffer.toString() + "_ oz");
