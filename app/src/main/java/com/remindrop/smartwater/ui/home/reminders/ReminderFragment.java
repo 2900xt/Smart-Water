@@ -72,6 +72,7 @@ public class ReminderFragment extends Fragment {
                 JSON.put("downtimeEnd", 12);
             }
             downtimeEnd = JSON.getInt("downtimeEnd");
+
         } catch (JSONException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -80,7 +81,7 @@ public class ReminderFragment extends Fragment {
         reminderIntervalInput = binding.reminderIntervalInput;
         if(reminderInterval == 0)
         {
-            reminderIntervalInput.setText("None");
+            reminderIntervalInput.setText("");
         }
         else {
             reminderIntervalInput.setText(String.valueOf(reminderInterval));
@@ -89,16 +90,31 @@ public class ReminderFragment extends Fragment {
         remindersEnableSwitch.setChecked(remindersEnabled);
         remindersEnableSwitch.setOnClickListener(new OnClickListener(parent, this));
 
-        binding.reminderDowntimeStart.setText(String.valueOf(downtimeStart));
-        binding.reminderDowntimeEnd.setText(String.valueOf(downtimeEnd));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.am_or_pm, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerAmOrPmStart.setAdapter(adapter);
         binding.spinnerAmOrPmEnd.setAdapter(adapter);
 
+        if(downtimeStart > 12)
+        {
+            downtimeStart -= 12;
+            binding.spinnerAmOrPmStart.setSelection(1);
+        }
+
+        if(downtimeEnd > 12)
+        {
+            downtimeEnd -= 12;
+            binding.spinnerAmOrPmEnd.setSelection(1);
+        }
+
+        binding.reminderDowntimeStart.setText(String.valueOf(downtimeStart));
+        binding.reminderDowntimeEnd.setText(String.valueOf(downtimeEnd));
+
         binding.buttonGoBack.setOnClickListener(new OnClickListener(parent, this));
 
+        binding.reminderDowntimeStart.setText(String.valueOf(downtimeStart));
+        binding.reminderDowntimeEnd.setText(String.valueOf(downtimeEnd));
         return binding.getRoot();
     }
 
@@ -117,16 +133,6 @@ public class ReminderFragment extends Fragment {
             {
                 Util.swapFragments(current, parent);
             }
-            if(view.getId() == R.id.switch_enable_reminders)
-            {
-                if(binding.switchEnableReminders.isChecked())
-                {
-                    reminderIntervalInput.setText("0");
-                } else
-                {
-                    reminderIntervalInput.setText("None");
-                }
-            }
         }
     }
 
@@ -135,7 +141,7 @@ public class ReminderFragment extends Fragment {
 
         try {
             Util.getJSON().put("remindersEnabled", remindersEnableSwitch.isChecked());
-            Util.getJSON().put("reminderInterval", Integer.parseInt(Objects.requireNonNull(reminderIntervalInput.getText()).toString()));
+            Util.getJSON().put("reminderInterval", Integer.parseInt( "0" + Objects.requireNonNull(reminderIntervalInput.getText()).toString()));
 
             int downtimeStart = Integer.parseInt(Objects.requireNonNull(binding.reminderDowntimeStart.getText()).toString()),
                     downtimeEnd = Integer.parseInt(Objects.requireNonNull(binding.reminderDowntimeEnd.getText()).toString());
