@@ -11,13 +11,15 @@ import com.remindrop.smartwater.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+
 public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> ozDrankText;
     private final MutableLiveData<String> nextReminderTime;
     private final MutableLiveData<String> currentDateText;
     private final MutableLiveData<Double> progressDrank;
-    private double ouncesDrank, totalCapacity;
+    public double ouncesDrank, totalCapacity;
 
     public HomeViewModel()
     {
@@ -31,42 +33,22 @@ public class HomeViewModel extends ViewModel {
     {
         JSONObject JSONData = Util.getJSON();
 
-        if (!JSONData.has("nextReminderTime"))
-        {
-            JSONData.put("nextReminderTime", 0);
-        }
-
-        if (!JSONData.has("waterDrank"))
-        {
-            JSONData.put("waterDrank", 0);
-        }
-
-        if (!JSONData.has("totalCapacity"))
-        {
-            JSONData.put("totalCapacity", 60);
-        }
-
         double nextReminder = Math.round(JSONData.getDouble("nextReminderTime"));
 
         nextReminderTime.setValue("next in " + nextReminder + " minutes");
 
         totalCapacity = Math.round(JSONData.getDouble("totalCapacity") * 10) / 10.0;
 
-        ouncesDrank = Math.round(JSONData.getDouble("waterDrank") * 10) / 10.0;
+        double waterDrank = JSONData.getJSONObject("waterConsumption").getDouble(LocalDate.now().toString());
+        ouncesDrank = Math.round(waterDrank * 10) / 10.0;
         ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank today!");
-        currentDateText.setValue("Today: " + java.time.LocalDate.now().toString());
-
+        currentDateText.setValue("Today: " + LocalDate.now().toString());
         progressDrank.setValue(ouncesDrank / totalCapacity);
     }
 
     public LiveData<String> getWaterDrankText()
     {
         return ozDrankText;
-    }
-
-    public LiveData<String> getNextRemText()
-    {
-        return nextReminderTime;
     }
 
     public LiveData<String> getDateText()
@@ -84,11 +66,7 @@ public class HomeViewModel extends ViewModel {
 
         progressDrank.setValue(ouncesDrank / totalCapacity);
         ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank today!");
-
-        try
-        {
-            Util.getJSON().put("waterDrank", ouncesDrank);
-        } catch (Exception ignored){}
+        Util.saveWaterConsumption((int) ouncesDrank);
     }
 
 }

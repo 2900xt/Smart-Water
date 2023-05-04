@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_goal"
-        android:name="com.remindrop.smartwater.ui.goal.DashboardFragment"
+        android:name="com.remindrop.smartwater.ui.goal.WaterGoalFragment"
         android:label="@string/title_goal"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_watar_goal" />
 
     <fragment
         android:id="@+id/navigation_consumption"

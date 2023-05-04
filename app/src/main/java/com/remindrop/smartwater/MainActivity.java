@@ -1,22 +1,22 @@
 package com.remindrop.smartwater;
 
-import android.app.NotificationChannel;
+import static java.lang.Double.NaN;
+
 import android.app.NotificationManager;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.remindrop.smartwater.databinding.ActivityMainBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import java.net.URI;
+import java.time.LocalTime;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Util.JSONInit(getApplicationContext());
+
+        ReminderService.restartService(this);
+
+        if(getSystemService(NotificationManager.class).getNotificationChannel("com.remindrop.smartwater") == null)
+        {
+            Util.createNotificationChannel(this);
+        }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

@@ -55,9 +55,6 @@ public class HomeFragment extends Fragment {
         textWaterDrank.setTextSize(20);
         homeViewModel.getWaterDrankText().observe(getViewLifecycleOwner(), textWaterDrank::setText);
 
-        final TextView textNextRem = binding.textNextRem;
-        homeViewModel.getNextRemText().observe(getViewLifecycleOwner(), textNextRem::setText);
-
         final ImageView progressWheel = binding.waterProgressBar;
         final WaterProgBar waterProgressWheel = (WaterProgBar) progressWheel.getDrawable();
         waterProgressWheel.setProgress(homeViewModel.getProgress().getValue());

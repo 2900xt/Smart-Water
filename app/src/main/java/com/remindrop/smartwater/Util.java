@@ -1,10 +1,21 @@
 package com.remindrop.smartwater;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -15,10 +26,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Util {
-    public static void swapFragments(Fragment currentFragment, Fragment newFragment)
-    {
+
+    private static JSONObject JSONData;
+    private static Context JSONDataContext;
+    public static void swapFragments(Fragment currentFragment, Fragment newFragment) {
         FragmentTransaction fragmentTransaction = currentFragment.getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, newFragment);
         fragmentTransaction.addToBackStack("Home");
@@ -26,8 +41,7 @@ public class Util {
     }
 
     public static void writeJSON(JSONObject data, String filename, Context context) {
-        try
-        {
+        try {
             FileOutputStream fOS = context.openFileOutput(filename, Context.MODE_PRIVATE);
             OutputStreamWriter osWriter = new OutputStreamWriter(fOS);
             BufferedWriter writer = new BufferedWriter(osWriter);
@@ -37,31 +51,26 @@ public class Util {
             writer.close();
             osWriter.close();
             fOS.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(-1);
         }
     }
 
-    public static JSONObject readJSON(String filename, Context context)
-    {
+    public static JSONObject readJSON(String filename, Context context) {
         JSONObject data = null;
-        try
-        {
+        try {
             FileInputStream fIS = context.openFileInput(filename);
             InputStreamReader isReader = new InputStreamReader(fIS);
             BufferedReader reader = new BufferedReader(isReader);
 
             StringBuilder jsonBuilder = new StringBuilder();
             String currentLine;
-            while((currentLine = reader.readLine()) != null)
-            {
+            while ((currentLine = reader.readLine()) != null) {
                 jsonBuilder.append(currentLine);
             }
 
-            if(jsonBuilder.length() < 1)
-            {
+            if (jsonBuilder.length() < 1) {
                 jsonBuilder.append("{}");
             }
 
@@ -72,11 +81,8 @@ public class Util {
             reader.close();
             isReader.close();
             fIS.close();
-        }
-        catch (FileNotFoundException e)
-        {
-            try
-            {
+        } catch (FileNotFoundException e) {
+            try {
                 FileOutputStream fOS = context.openFileOutput(filename, Context.MODE_PRIVATE);
                 OutputStreamWriter osWriter = new OutputStreamWriter(fOS);
                 BufferedWriter writer = new BufferedWriter(osWriter);
@@ -86,15 +92,11 @@ public class Util {
                 writer.close();
                 osWriter.close();
                 fOS.close();
-            }
-            catch (Exception f)
-            {
+            } catch (Exception f) {
                 f.printStackTrace();
                 System.exit(-1);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(-1);
         }
@@ -102,80 +104,116 @@ public class Util {
         return data;
     }
 
-    private static JSONObject JSONData;
-    private static Context JSONDataContext;
-
-    public static void JSONInit(Context context)
-    {
+    public static void JSONInit(Context context) {
         JSONDataContext = context;
         JSONData = readJSON("remindropData.json", JSONDataContext);
+
+        try {
+            if (!JSONData.has("nextReminderTime")) {
+                JSONData.put("nextReminderTime", 0);
+            }
+
+            if (!JSONData.has("totalCapacity")) {
+                JSONData.put("totalCapacity", 60);
+            }
+
+            if(!JSONData.has("downtimeEnd"))
+            {
+                JSONData.put("downtimeEnd", "12:00");
+            }
+
+            if(!JSONData.has("remindersEnabled"))
+            {
+                JSONData.put("remindersEnabled", false);
+            }
+
+            if(!JSONData.has("downtimeStart"))
+            {
+                JSONData.put("downtimeStart", "12:00");
+            }
+
+            if(!JSONData.has("reminderInterval"))
+            {
+                JSONData.put("reminderInterval", 0);
+            }
+
+            JSONObject waterConsumption = null;
+            if(!JSONData.has("waterConsumption"))
+            {
+                waterConsumption = new JSONObject();
+                waterConsumption.put(LocalDate.now().toString(), 0);
+                JSONData.put("waterConsumption", waterConsumption);
+            } else
+            {
+                waterConsumption = JSONData.getJSONObject("waterConsumption");
+                if(!waterConsumption.has(LocalDate.now().toString()))
+                {
+                    waterConsumption.put(LocalDate.now().toString(), 0);
+                }
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 
-    public static void JSONSave()
-    {
+    public static void JSONSave() {
         writeJSON(JSONData, "remindropData.json", JSONDataContext);
     }
 
-    public static JSONObject getJSON()
-    {
+    public static JSONObject getJSON() {
         return JSONData;
     }
 
-    public static class Time
-    {
-        public int hour, minute, second;
-        public Time(int hour, int minute, int second)
-        {
-            this.hour = hour;
-            this.minute = minute;
-            this.second = second;
+    public static void sendNotification(CharSequence message, CharSequence title, Context app) {
+
+        /*Source: https://developer.android.com/develop/ui/views/notifications/build-notification*/
+        //Ask for a notification form the system
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(app, "com.remindrop.smartwater")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notifManager = NotificationManagerCompat.from(app.getApplicationContext());
+
+        //Check if we have the ability to send notifications
+        if (ActivityCompat.checkSelfPermission(app, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
         }
-        public Time()
-        {
-            this.hour = 0;
-            this.minute = 0;
-            this.second = 0;
-        }
-        public Time(String data)
-        {
-            String[] comp = data.split(":");
-            this.hour = Integer.parseInt(comp[0]);
-            this.minute = Integer.parseInt(comp[1]);
-            this.second = Integer.parseInt(comp[2]);
-        }
-        @Override
-        public String toString()
-        {
-            return hour + ":" + minute + ":" + second;
-        }
+
+        //Send the notification
+        notifManager.notify(1, notifBuilder.build());
     }
 
-    public static class Date
+    public static void createNotificationChannel(AppCompatActivity app) {
+
+        /*Source: https://developer.android.com/develop/ui/views/notifications/channels*/
+
+        CharSequence name = app.getString(R.string.channel_name);
+        String description = app.getString(R.string.channel_description);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel("com.remindrop.smartwater", name, importance);
+        channel.setDescription(description);
+
+        // Register the channel with the system. You can't change the importance
+        // or other notification behaviors after this.
+        NotificationManager notificationManager = app.getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+    }
+
+
+    public static void saveWaterConsumption(int ouncesConsumed)
     {
-        public int year, month, day;
-        public Date(int year, int month, int day)
+        try {
+            JSONObject waterConsumptionHistory = Util.getJSON().getJSONObject("waterConsumption");
+            waterConsumptionHistory.put(LocalDate.now().toString(), ouncesConsumed);
+            Util.getJSON().put("waterConsumption", waterConsumptionHistory);
+        } catch (JSONException e)
         {
-            this.year = year;
-            this.month = month;
-            this.day = day;
-        }
-        public Date()
-        {
-            this.year = 0;
-            this.month = 0;
-            this.day = 0;
-        }
-        public Date(String data)
-        {
-            String[] comp = data.split("/");
-            this.year = Integer.parseInt(comp[0]);
-            this.month = Integer.parseInt(comp[1]);
-            this.day = Integer.parseInt(comp[2]);
-        }
-        @Override
-        public String toString()
-        {
-            return year + ":" + month + ":" + day;
+            e.printStackTrace();
+            System.exit(-1);
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.remindrop.smartwater.R;
+import com.remindrop.smartwater.ReminderService;
 import com.remindrop.smartwater.Util;
 import com.remindrop.smartwater.databinding.FragmentReminderBinding;
 import com.remindrop.smartwater.ui.home.HomeViewModel;
@@ -20,6 +21,7 @@ import com.remindrop.smartwater.ui.home.HomeViewModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class ReminderFragment extends Fragment {
@@ -49,29 +51,11 @@ public class ReminderFragment extends Fragment {
         boolean remindersEnabled = false;
 
         try {
-            if(!JSON.has("reminderInterval"))
-            {
-                Util.getJSON().put("reminderInterval", 0);
-            }
+
             reminderInterval = JSON.getInt("reminderInterval");
-
-            if(!JSON.has("remindersEnabled"))
-            {
-                JSON.put("remindersEnabled", false);
-            }
             remindersEnabled = JSON.getBoolean("remindersEnabled");
-
-            if(!JSON.has("downtimeStart"))
-            {
-                JSON.put("downtimeStart", 12);
-            }
-            downtimeStart = JSON.getInt("downtimeStart");
-
-            if(!JSON.has("downtimeEnd"))
-            {
-                JSON.put("downtimeEnd", 12);
-            }
-            downtimeEnd = JSON.getInt("downtimeEnd");
+            downtimeStart = LocalTime.parse(JSON.getString("downtimeStart")).getHour();
+            downtimeEnd = LocalTime.parse(JSON.getString("downtimeEnd")).getHour();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -141,7 +125,17 @@ public class ReminderFragment extends Fragment {
 
         try {
             Util.getJSON().put("remindersEnabled", remindersEnableSwitch.isChecked());
-            Util.getJSON().put("reminderInterval", Integer.parseInt( "0" + Objects.requireNonNull(reminderIntervalInput.getText()).toString()));
+
+            StringBuilder reminderInterval =  new StringBuilder(Objects.requireNonNull(reminderIntervalInput.getText()).toString());
+            for(int i = 0; i < reminderInterval.length(); i++)
+            {
+                char c = reminderInterval.charAt(i);
+                if(!(c < '9' && c > '0'))
+                {
+                    reminderInterval.deleteCharAt(i);
+                }
+            }
+            Util.getJSON().put("reminderInterval", Integer.parseInt( "0" + reminderInterval.toString()));
 
             int downtimeStart = Integer.parseInt(Objects.requireNonNull(binding.reminderDowntimeStart.getText()).toString()),
                     downtimeEnd = Integer.parseInt(Objects.requireNonNull(binding.reminderDowntimeEnd.getText()).toString());
@@ -156,14 +150,15 @@ public class ReminderFragment extends Fragment {
                 downtimeEnd += 12;
             }
 
-
-            Util.getJSON().put("downtimeStart", downtimeStart);
-            Util.getJSON().put("downtimeEnd", downtimeEnd);
+            Util.getJSON().put("downtimeStart", LocalTime.of(downtimeStart, 0));
+            Util.getJSON().put("downtimeEnd", LocalTime.of(downtimeEnd, 0));
         } catch (JSONException e)
         {
             e.printStackTrace();
             System.exit(-1);
         }
         super.onDestroyView();
+
+        ReminderService.restartService(requireContext());
     }
 }
