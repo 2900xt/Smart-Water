@@ -6,130 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".ui.goal.WaterGoalFragment">
 
+
     <TextView
-        android:layout_width="170dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_63sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:text="mins"
         android:textAlignment="center"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintHorizontal_bias="0.950"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <TextView
-        android:layout_width="288dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_288sdp"
+        android:layout_height="@dimen/_68sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:text="Excercize per day:"
-        android:textColor="@color/normal_blue"
         android:textAlignment="center"
+        android:textColor="@color/normal_blue"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
+        app:layout_constraintVertical_bias="0.55" />
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="241dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="@dimen/_256sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:background="@drawable/textview_rounded"
+        android:text="Set Goal: 0 oz"
         android:textAlignment="center"
-        android:textSize="40sp"
-        android:text="= 0 oz"
+        android:textColor="@color/white"
+        android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
-
+        app:layout_constraintVertical_bias="0.85" />
 
     <TextView
-        android:layout_width="333dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_333sdp"
+        android:layout_height="@dimen/_68sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:text="How much do I drink?"
-        android:textStyle="bold"
-        android:textColor="@color/dark_blue"
         android:textAlignment="center"
+        android:textColor="@color/dark_blue"
         android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <TextView
-        android:layout_width="170dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_63sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:text="Weight:"
-        android:textColor="@color/normal_blue"
         android:textAlignment="center"
+        android:textColor="@color/normal_blue"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.24" />
+
 
     <TextView
-        android:layout_width="170dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_63sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:text="lbs"
         android:textAlignment="center"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
-
-    <ImageView
-        android:layout_width="279dp"
-        android:layout_height="235dp"
-        android:contentDescription="Water Goal Logo"
-        android:src="@drawable/ic_nav_goal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
-
-
+        app:layout_constraintVertical_bias="0.4" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_60sdp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.200"
+        app:layout_constraintHorizontal_bias="0.100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57">
+        app:layout_constraintVertical_bias="0.4">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -152,15 +142,15 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_60sdp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.200"
+        app:layout_constraintHorizontal_bias="0.100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78">
+        app:layout_constraintVertical_bias="0.68">
 
 
         <com.google.android.material.textfield.TextInputEditText

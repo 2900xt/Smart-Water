@@ -26,13 +26,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private void init() {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        try {
-            homeViewModel.setData();
-        } catch (JSONException e)
-        {
-            e.printStackTrace();
-            System.exit(-1);
-        }
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,6 +37,14 @@ public class HomeFragment extends Fragment {
         if(homeViewModel == null)
         {
             init();
+        }
+
+        try {
+            homeViewModel.setData();
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+            System.exit(-1);
         }
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);

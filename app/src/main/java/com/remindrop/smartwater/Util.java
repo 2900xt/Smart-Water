@@ -37,6 +37,7 @@ public class Util {
         FragmentTransaction fragmentTransaction = currentFragment.getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, newFragment);
         fragmentTransaction.addToBackStack("Home");
+        fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commit();
     }
 
@@ -113,10 +114,6 @@ public class Util {
                 JSONData.put("nextReminderTime", 0);
             }
 
-            if (!JSONData.has("totalCapacity")) {
-                JSONData.put("totalCapacity", 60);
-            }
-
             if(!JSONData.has("downtimeEnd"))
             {
                 JSONData.put("downtimeEnd", "12:00");
@@ -135,6 +132,11 @@ public class Util {
             if(!JSONData.has("reminderInterval"))
             {
                 JSONData.put("reminderInterval", 0);
+            }
+
+            if(!JSONData.has("waterGoal"))
+            {
+                JSONData.put("waterGoal", 60);
             }
 
             JSONObject waterConsumption = null;

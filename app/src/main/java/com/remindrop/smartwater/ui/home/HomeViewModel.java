@@ -19,7 +19,7 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<String> nextReminderTime;
     private final MutableLiveData<String> currentDateText;
     private final MutableLiveData<Double> progressDrank;
-    public double ouncesDrank, totalCapacity;
+    public double ouncesDrank, waterGoal;
 
     public HomeViewModel()
     {
@@ -37,13 +37,13 @@ public class HomeViewModel extends ViewModel {
 
         nextReminderTime.setValue("next in " + nextReminder + " minutes");
 
-        totalCapacity = Math.round(JSONData.getDouble("totalCapacity") * 10) / 10.0;
+        waterGoal = Math.round(JSONData.getDouble("waterGoal") * 10) / 10.0;
 
         double waterDrank = JSONData.getJSONObject("waterConsumption").getDouble(LocalDate.now().toString());
         ouncesDrank = Math.round(waterDrank * 10) / 10.0;
-        ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank today!");
+        ozDrankText.setValue(ouncesDrank + " out of " + waterGoal + " ounces drank today!");
         currentDateText.setValue("Today: " + LocalDate.now().toString());
-        progressDrank.setValue(ouncesDrank / totalCapacity);
+        progressDrank.setValue(ouncesDrank / waterGoal);
     }
 
     public LiveData<String> getWaterDrankText()
@@ -64,8 +64,8 @@ public class HomeViewModel extends ViewModel {
     {
         ouncesDrank += ounces;
 
-        progressDrank.setValue(ouncesDrank / totalCapacity);
-        ozDrankText.setValue(ouncesDrank + " out of " + totalCapacity + " ounces drank today!");
+        progressDrank.setValue(ouncesDrank / waterGoal);
+        ozDrankText.setValue(ouncesDrank + " out of " + waterGoal + " ounces drank today!");
         Util.saveWaterConsumption((int) ouncesDrank);
     }
 

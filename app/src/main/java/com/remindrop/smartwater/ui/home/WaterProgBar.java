@@ -17,7 +17,7 @@ public class WaterProgBar extends Drawable {
     public WaterProgBar() {
         super();
         paint = new Paint();
-        paint.setStrokeWidth(80f);
+        paint.setStrokeWidth(90f);
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         this.progress = 0;
@@ -28,7 +28,7 @@ public class WaterProgBar extends Drawable {
         Rect bounds = getBounds();
         float centerX = bounds.exactCenterX();
         float centerY = bounds.exactCenterY();
-        float radius = Math.min(centerX, centerY) - (paint.getStrokeWidth() / 2f);
+        float radius = (Math.min(centerX, centerY) - (paint.getStrokeWidth() / 2f)) / 1.25f;
 
         float sweepAngle = 360f;
         paint.setColor(bgColor);
@@ -37,7 +37,6 @@ public class WaterProgBar extends Drawable {
         sweepAngle = (progress / 100f) * 360f;
         paint.setColor(fgColor);
         canvas.drawArc(centerX - radius, centerY - radius, centerX + radius, centerY + radius, -90f, sweepAngle, false, paint);
-
     }
 
     @Override
@@ -62,8 +61,8 @@ public class WaterProgBar extends Drawable {
         this.bgColor = bg;
     }
 
-    public void setProgress(double progress) {
-        this.progress = (int) (progress * 100);
+    public void setProgress(double progressInside) {
+        this.progress = (int) (progressInside * 100);
         invalidateSelf();
     }
 }

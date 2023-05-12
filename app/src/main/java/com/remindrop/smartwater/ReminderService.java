@@ -118,7 +118,6 @@ public class ReminderService extends Service {
 
             setDowntime(downtimeStart, downtimeEnd);
 
-            System.out.println(downtimeStart.getHour());
         }
         public void setDowntime(LocalTime downtimeStart, LocalTime downtimeEnd)
         {
@@ -160,7 +159,7 @@ public class ReminderService extends Service {
 
                 try
                 {
-                    System.out.println("Sleeping for: " + minsTillNextRem * 60 * 1000);
+                    System.out.println("Sleeping for: " + minsTillNextRem * 60 + "s");
                     Thread.sleep( minsTillNextRem * 60 * 1000);
                     minsTillNextRem += reminderInterval;
                     Util.sendNotification("Drink Water!", "Water Reminders", getApplicationContext());
