@@ -1,9 +1,8 @@
 package com.remindrop.smartwater;
 
-import static java.lang.Double.NaN;
-
 import android.app.NotificationManager;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.remindrop.smartwater.databinding.ActivityMainBinding;
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_goal, R.id.navigation_consumption)
                 .build();
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+
+
         new Bluetooth(this);
-
-
 
     }
 
