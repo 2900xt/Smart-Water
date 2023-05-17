@@ -26,63 +26,72 @@
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="1"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_2"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="2"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_3"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="3"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_4"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="4"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_5"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="5"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_6"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="6"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_7"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="7"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_8"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="8"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_9"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="9"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <ImageView android:contentDescription="@null" />
 
@@ -91,14 +100,16 @@
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="0"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
 
         <Button
             android:id="@+id/button_log_water_del"
             android:layout_margin="4dp"
             android:backgroundTint="@color/light_blue"
             android:text="del"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/akaya_telivigala" />
     </GridLayout>
 
     <TextView
@@ -116,7 +127,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.35"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <ImageView
         android:id="@+id/image_log_water"
@@ -128,7 +140,7 @@
         app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/button_add_water"
@@ -143,7 +155,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.885" />
+        app:layout_constraintVertical_bias="0.885"
+        android:fontFamily="@font/akaya_telivigala" />
 
 
 

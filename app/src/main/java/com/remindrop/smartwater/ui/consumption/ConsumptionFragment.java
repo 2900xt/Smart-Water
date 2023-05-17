@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.remindrop.smartwater.R;
 import com.remindrop.smartwater.databinding.FragmentConsumptionBinding;
 
 public class ConsumptionFragment extends Fragment {
@@ -26,6 +28,10 @@ public class ConsumptionFragment extends Fragment {
 
         final TextView textView = binding.textConsumption;
         consumptionViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        AppCompatTextView title = (AppCompatTextView) getActivity().findViewById(R.id.text_title_bar);
+        title.setText("Water History");
+
         return root;
     }
 

@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -99,6 +99,11 @@ public class ReminderFragment extends Fragment {
 
         binding.reminderDowntimeStart.setText(String.valueOf(downtimeStart));
         binding.reminderDowntimeEnd.setText(String.valueOf(downtimeEnd));
+
+
+        AppCompatTextView title = (AppCompatTextView) getActivity().findViewById(R.id.text_title_bar);
+        title.setText("Reminders");
+
         return binding.getRoot();
     }
 

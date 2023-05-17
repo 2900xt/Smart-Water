@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 
@@ -64,6 +65,10 @@ public class LogWaterFragment extends Fragment {
 
         binding.buttonAddWater.setOnClickListener(clickListener);
         addWaterButton = binding.buttonAddWater;
+
+
+        AppCompatTextView title = (AppCompatTextView) getActivity().findViewById(R.id.text_title_bar);
+        title.setText("Log Water");
 
         return root;
     }

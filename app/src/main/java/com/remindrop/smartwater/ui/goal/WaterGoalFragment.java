@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -39,6 +40,9 @@ public class WaterGoalFragment extends Fragment {
         textView.setOnClickListener(keyPressListener);
         binding.goalTextExcercize.setOnClickListener(keyPressListener);
         binding.goalTextWeight.setOnClickListener(keyPressListener);
+
+        AppCompatTextView title = (AppCompatTextView) getActivity().findViewById(R.id.text_title_bar);
+        title.setText("Water Goal");
 
         return root;
     }

@@ -45,11 +45,14 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Smart Water"
-            android:textColor="@color/black"
-            android:width="@dimen/_100sdp"
+            android:text="Dashboard"
+            android:textColor="@color/white"
+            android:width="@dimen/_200sdp"
             android:height="@dimen/_100sdp"
-            android:textSize="20sp"/>
+            android:textAlignment="center"
+            android:textSize="@dimen/_25sdp"
+            android:id="@+id/text_title_bar"
+            android:fontFamily="@font/akaya_telivigala"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="@dimen/_40sdp"
@@ -57,7 +60,8 @@
             android:backgroundTint="@color/normal_blue"
             android:src="@drawable/ic_nav_profile"
             android:layout_marginEnd="@dimen/_50sdp"
-            android:layout_marginStart="@dimen/_150sdp"/>
+            android:layout_marginStart="@dimen/_50sdp"
+            android:id="@+id/device_connection_settings"/>
 
     </androidx.appcompat.widget.Toolbar>
 

@@ -74,7 +74,8 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.879"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <TextView
         android:id="@+id/text_log_water"
@@ -87,7 +88,8 @@
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.879"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <TextView
         android:id="@+id/text_water_drank"
@@ -102,7 +104,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintVertical_bias="0.589"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <TextView
         android:id="@+id/text_date"
@@ -117,7 +120,8 @@
         app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.004"
+        android:fontFamily="@font/akaya_telivigala" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

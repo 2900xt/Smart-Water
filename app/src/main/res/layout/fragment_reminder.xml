@@ -18,7 +18,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.05" />
 
 
     <com.google.android.material.switchmaterial.SwitchMaterial
@@ -30,6 +30,7 @@
         android:text="@string/enable_reminders"
         android:textColor="@color/normal_blue"
         android:textSize="20sp"
+        android:fontFamily="@font/akaya_telivigala"
 
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +51,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.311"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <TextView
         android:layout_width="234dp"
@@ -64,7 +66,8 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintVertical_bias="0.551"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="100dp"
@@ -90,7 +93,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/akaya_telivigala" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +110,8 @@
         app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63" />
+        app:layout_constraintVertical_bias="0.63"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -119,7 +124,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.721"
+        android:fontFamily="@font/akaya_telivigala" />
 
     <Button
         android:id="@+id/button_go_back"
@@ -134,7 +140,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
+        app:layout_constraintVertical_bias="0.87"
+        android:fontFamily="@font/akaya_telivigala" />
 
 
     <Spinner
@@ -187,7 +194,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/akaya_telivigala" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,7 +224,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/akaya_telivigala" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

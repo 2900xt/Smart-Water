@@ -9,24 +9,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.polidea.rxandroidble3.RxBleClient;
+import com.polidea.rxandroidble3.RxBleDevice;
 import com.polidea.rxandroidble3.scan.ScanResult;
 import com.polidea.rxandroidble3.scan.ScanSettings;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class Bluetooth
 {
-    private AppCompatActivity mainActivity;
-    private Disposable scanDisposable;
-    private boolean isScanning;
-    private RxBleClient rxBleClient;
-    private ArrayList<ScanResult> btDevices;
-    public Bluetooth(AppCompatActivity mainActivity)
+    private static AppCompatActivity mainActivity;
+    private static Disposable scanDisposable;
+    private static boolean scanning;
+    private static RxBleClient rxBleClient;
+    private static ArrayList<RxBleDevice> btDevices;
+    private static Consumer<RxBleDevice> onBtDevFound;
+    public static void init(AppCompatActivity activity)
     {
-        this.mainActivity = mainActivity;
+        mainActivity = activity;
         Intent requestBluetoothEnable = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         if (ActivityCompat.checkSelfPermission(mainActivity, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             Log.e("Bluetooth", "Error: Unable to acquire bluetooth permissions");
@@ -37,14 +41,15 @@ public class Bluetooth
         rxBleClient = RxBleClient.create(mainActivity);
 
         btDevices = new ArrayList<>();
-        isScanning = false;
-
-        startScan();
+        onBtDevFound = rxBleDevice -> {};
+        scanning = false;
     }
 
-    public void startScan()
+    public static void startScan()
     {
-        isScanning = true;
+        if(scanning) return;
+
+        scanning = true;
         scanDisposable = rxBleClient.scanBleDevices(
                     new ScanSettings.Builder()
                             .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
@@ -54,15 +59,21 @@ public class Bluetooth
             .doFinally(() -> scanDisposable.dispose())
             .subscribe(
                     scanResult -> {
-                        for(int i = 0; i < btDevices.size(); i++)
+
+                        RxBleDevice dev = scanResult.getBleDevice();
+
+                        if(dev.getName() == null) return;
+
+                        int index = btDevices.indexOf(dev);
+
+                        if(index != -1)
                         {
-                            if(btDevices.get(i).getBleDevice().equals(scanResult.getBleDevice())) {
-                                btDevices.set(i, scanResult);
-                                return;
-                            }
+                            btDevices.set(index, dev);
+                            return;
                         }
 
-                        btDevices.add(scanResult);
+                        btDevices.add(dev);
+                        onBtDevFound.accept(dev);
                     },
                     throwable -> {
                         throwable.printStackTrace();
@@ -71,15 +82,37 @@ public class Bluetooth
             );
     }
 
-    public void stopScan()
+    public static void stopScan()
     {
-        isScanning = false;
+        if(!scanning) return;
+
+        scanning = false;
         scanDisposable.dispose();
     }
 
-    public ArrayList<ScanResult> getBtDevices()
+    public static ArrayList<RxBleDevice> getBtDevices()
     {
         return btDevices;
+    }
+
+    public static boolean isScanning()
+    {
+        return scanning;
+    }
+
+    public static void setOnBtDevFound(Consumer<RxBleDevice> btDevFound)
+    {
+        onBtDevFound = btDevFound;
+    }
+
+    public static void resetAdapter()
+    {
+        btDevices.clear();
+
+        if(scanning)
+        {
+            stopScan();
+        }
     }
 
 

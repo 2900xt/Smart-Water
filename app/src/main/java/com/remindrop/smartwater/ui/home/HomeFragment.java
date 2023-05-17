@@ -1,24 +1,34 @@
 package com.remindrop.smartwater.ui.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.remindrop.smartwater.MainActivity;
 import com.remindrop.smartwater.R;
 import com.remindrop.smartwater.Util;
 import com.remindrop.smartwater.databinding.FragmentHomeBinding;
+import com.remindrop.smartwater.ui.deviceSettings.MyDeviceFragment;
 import com.remindrop.smartwater.ui.home.logwater.LogWaterFragment;
 import com.remindrop.smartwater.ui.home.reminders.ReminderFragment;
 
 import org.json.JSONException;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -29,6 +39,7 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -69,6 +80,24 @@ public class HomeFragment extends Fragment {
 
         binding.imageBellIcon.setOnClickListener(input);
         binding.imageLogWater.setOnClickListener(input);
+
+
+        AppCompatTextView title = requireActivity().findViewById(R.id.text_title_bar);
+
+        if(title == null)
+        {
+            Log.e("Home Fragment", "Unable to edit title text");
+        }
+        else {
+            title.setText("Dashboard");
+        }
+
+        HomeFragment fragment = this;
+
+        new Thread(() -> {
+            while(MainActivity.profileButton == null);
+            MainActivity.profileButton.setOnClickListener(v -> Util.swapFragments(fragment, new MyDeviceFragment()));
+        }).start();
 
         return root;
     }
